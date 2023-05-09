@@ -1,0 +1,39 @@
+{
+  "name": "schoolmanagementsystem",
+  "version": "1.0.0",
+  "description": "level project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ultreck/schoolManagementSystemNode.git"
+  },
+  "keywords": [
+    "school",
+    "management",
+    "system"
+  ],
+  "author": "Oluwatayese Emmanuel Adetutu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ultreck/schoolManagementSystemNode/issues"
+  },
+  "homepage": "https://github.com/Ultreck/schoolManagementSystemNode#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cloudinary": "^1.35.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.1",
+    "socketio": "^1.0.0"
+  }
+}
