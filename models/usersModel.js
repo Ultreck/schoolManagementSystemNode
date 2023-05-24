@@ -18,7 +18,6 @@ const studentsSchema = mongoose.Schema({
       password:{
             type:String,
             require:true,
-            require:false
       },
       gender:{
             type:String,
@@ -27,6 +26,46 @@ const studentsSchema = mongoose.Schema({
       time:{
             type: Date,
            default:Date.now()
+      },
+      contact:{
+            type: String,
+           require
+      },
+      address:{
+            type: String,
+           require
+      },
+      city:{
+            type: String,
+           require
+      },
+      country:{
+            type: String,
+           require
+      },
+      courses:{
+            type: String,
+           require
+      },
+      faculty:{
+            type: String,
+           require
+      },
+      level:{
+            type: String,
+           require
+      },
+      matric:{
+            type: String,
+           require
+      },
+      program:{
+            type: String,
+           require
+      },
+      region:{
+            type: String,
+           require
       },
 });
 

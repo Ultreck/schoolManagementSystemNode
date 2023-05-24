@@ -4,9 +4,8 @@ const dotenv = require('dotenv');
 const Student = require('../models/usersModel');
 dotenv.config();
 
-
-const registerUsers = (req, res) => {
-      const {firstname, lastname, email, gender, password} = req.body;
+const validateEmail = (req, res) =>{
+      const {firstname, lastname, email, password, gender } = req.body
       Student.findOne({email}).then((resp) => {
             if(resp){
                   res.json({
@@ -15,7 +14,21 @@ const registerUsers = (req, res) => {
                         success:false,
                   })
             }else{
-                  Student.create({firstname, lastname, email, gender, password})
+                  res.json({
+                        status: 200,
+                        message: "success",
+                        success: true
+                  })
+            }
+
+            })
+      }
+
+
+const registerUsers = (req, res) => {
+      const {firstname, lastname, email, gender, password, contact, address, city, country, courses, faculty, level, matric, program, region} = req.body;
+      console.log(firstname, lastname, email, gender, password, contact, address, city, country, courses, faculty, level, matric, program, region);
+                  Student.create({firstname, lastname, email, gender, password, contact,  address, city, country, courses, faculty, level,matric, program, region})
                   .then(ret =>{
                         console.log(ret);
                         res.json({
@@ -30,9 +43,7 @@ const registerUsers = (req, res) => {
                         })
                         console.log(err)
                   })
-            }
-      })
-}
+            };
 
 const loginUsers = (req, res) => {
       const {email, password} = req.body;
@@ -69,4 +80,42 @@ const loginUsers = (req, res) => {
       })
 }
 
-module.exports = {registerUsers, loginUsers}
+// app.get("/data", (req, res) =>{
+//       ContactPost.find().then((resp) =>{
+//             console.log(resp);
+//             res.json(resp)
+//       }).catch((error) => {
+//             res.json({
+//                   status: 404,
+//                   success: false,
+//                   message: error
+//             })
+//       })
+// })
+const userData = (req, res) =>{
+      const {id} = req.body;
+      Student.findOne(id).then((resp) =>{
+            res.json(resp)
+      }).catch((error) => {
+            res.json({
+                  status: 404,
+                  success: false,
+                  message: error
+            })
+      })
+}
+
+
+
+const  getAllData = (req, res) =>{
+      Student.find().then((resp) =>{
+            res.json(resp)
+      }).catch((error) => {
+            res.json({
+                  status: 404,
+                  success: false,
+                  message: error
+            })
+      })
+}
+module.exports = {registerUsers, loginUsers, userData, getAllData, validateEmail}
