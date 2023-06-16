@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const {registerUsers } = require('./controllers/signUpController');
 const router = require('./routers');
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(__dirname + 'assets'));
+app.use(express.static(__dirname + '/asset'));
 app.use(express.json());
 app.use(cors());
 app.use('/', router)
@@ -18,6 +18,7 @@ dotenv.config();
 mongoose.connect(process.env.URI).then(res =>{
       console.log('Mongoose Db Connected');
 }).catch(err =>{
+      console.log("Mongoose connection failed");
       console.log(err);
 })
 

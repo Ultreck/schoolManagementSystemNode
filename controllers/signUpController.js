@@ -80,21 +80,10 @@ const loginUsers = (req, res) => {
       })
 }
 
-// app.get("/data", (req, res) =>{
-//       ContactPost.find().then((resp) =>{
-//             console.log(resp);
-//             res.json(resp)
-//       }).catch((error) => {
-//             res.json({
-//                   status: 404,
-//                   success: false,
-//                   message: error
-//             })
-//       })
-// })
 const userData = (req, res) =>{
       const {id} = req.body;
       Student.findOne(id).then((resp) =>{
+            console.log(resp);
             res.json(resp)
       }).catch((error) => {
             res.json({
