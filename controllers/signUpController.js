@@ -97,7 +97,7 @@ const userData = (req, res) =>{
 
 
 const  getAllData = (req, res) =>{
-      Student.find().then((resp) =>{
+      Student.find().sort({updatedAt: -1}).then((resp) =>{
             res.json(resp)
       }).catch((error) => {
             res.json({

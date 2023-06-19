@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const socket = require('socket.io')
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -25,6 +26,27 @@ mongoose.connect(process.env.URI).then(res =>{
 // router.post('/register', registerUsers)
 
 
-server.listen(PORT, (req, res) => {
+const serverIo = server.listen(PORT, (req, res) => {
       console.log(`Server is listening at https://localhost:${PORT}`)
+});
+
+const io = socket(serverIo, {
+      cors:{
+            origin:"*",
+            Credential:true
+      }
+})
+
+global.onlineUers = new Map();
+io.on('connection', (socket) => {
+      global.chatsocket = socket;
+      socket.on("addUser", (id) => {
+            onlineUers.set(id, socket.id);
+      });
+      socket.on("send-msg", (data) => {
+            const sendUserSocket = onlineUers.get(data.to);
+            if(sendUserSocket){
+                  socket.to(sendUserSocket).emit("msg-receive", data.message);
+            }
+      })
 })
