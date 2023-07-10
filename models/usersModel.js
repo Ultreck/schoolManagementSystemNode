@@ -67,6 +67,16 @@ const studentsSchema = mongoose.Schema({
             type: String,
            require
       },
+      follow:[{type:mongoose.Schema.Types.ObjectId}],
+      following:[{type:mongoose.Schema.Types.ObjectId}],
+      path: {
+            type: String,
+            require
+      },
+      filename: {
+            type: String,
+            require
+      },
 });
 
 studentsSchema.pre('save', async function(){

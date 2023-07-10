@@ -7,7 +7,7 @@ const http = require('http');
 const server = http.createServer(app);
 const PORT = process.env.PORT || 4000
 const mongoose = require("mongoose");
-const {registerUsers } = require('./controllers/signUpController');
+// const {registerUsers } = require('./controllers/signUpController');
 const router = require('./routers');
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/asset'));
