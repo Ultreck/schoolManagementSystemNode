@@ -11,6 +11,7 @@ const {storage} = require("./upload");
 const { createMessage, getMessage } = require('./controllers/chatsController');
 const { addProfile, updateProfileBlog } = require('./controllers/profileController');
 const { postLikes } = require('./controllers/likesController');
+const { userReview, getUserReview } = require('./controllers/ratingController');
 const { allNotificationActions, getNotifictionActions } = require('./controllers/actionsController');
 const upload =  multer({storage});
 // const uploads =  multer({storages})
@@ -43,5 +44,7 @@ router.put('/follow', followingUsers);
 router.put('/unfollow', unFollowUsers);
 router.post('/actions', allNotificationActions);
 router.get('/notification', getNotifictionActions);
+router.post('/rating', userReview);
+router.get('/getRating', getUserReview);
 
 module.exports = router;
