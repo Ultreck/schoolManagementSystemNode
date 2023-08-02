@@ -2,6 +2,7 @@
 const newsFeed = require("../models/blogModel");
 const Student = require("../models/usersModel");
 const notificationActions = require("../models/actionsModel");
+const ratingModel = require("../models/ratingModel");
 
 
 const addProfile = (req, res) => {
@@ -27,6 +28,12 @@ const addProfile = (req, res) => {
 
       // updating user new picture in to the notification.
       notificationActions.updateMany({user_id: user_id}, {$set: {path: path}}).then(responese => {
+            console.log(responese);
+      }).catch(err => {
+            console.log("Internal server error");
+      });
+
+      ratingModel.updateOne({user_id: user_id}, {$set: {path: path}}).then(responese => {
             console.log(responese);
       }).catch(err => {
             console.log("Internal server error");

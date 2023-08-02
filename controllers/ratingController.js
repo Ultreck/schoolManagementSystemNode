@@ -4,10 +4,10 @@ const ratingModel = require("../models/ratingModel");
 const userReview = (req, res) => {
       const {rating, fullName, review, user_id, path} = req.body;
       // console.log(rating, fullName, review, user_id, path);
-      ratingModel.findOne({user_id:user_id}).then(found => {
+      ratingModel.findOne({user_id}).then(found => {
             console.log(found);
             if(found){
-                  ratingModel.updateOne({rating:rating}).then(finalFound => {
+                  ratingModel.updateOne({user_id: user_id}, {$set: {rating:rating}}).then(finalFound => {
                         console.log(finalFound);
                         res.status(200).json(finalFound);
                   })

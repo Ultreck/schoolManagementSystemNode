@@ -1,6 +1,14 @@
 const mongoose =  require("mongoose");
 
-const newsFeedSchema = mongoose.Schema({
+const commentSchema = new mongoose.Schema({
+      text:{type: String, require: true},
+      postedBy:{type:mongoose.Schema.Types.ObjectId},
+      fullName:{type:String, require: true},
+      path:{type:String, require: true},
+      gender:{type:String, require:true},
+},{timestamps: true})
+
+const newsFeedSchema = new mongoose.Schema({
       senderImg: {
             type: String,
             require: true
@@ -27,14 +35,7 @@ const newsFeedSchema = mongoose.Schema({
       },
       likes:[{type:mongoose.Schema.Types.ObjectId}],
       follow:[{type:mongoose.Schema.Types.ObjectId}],
-      comments:[{
-            text:String,
-            postedBy:{type:mongoose.Schema.Types.ObjectId},
-            fullName:String,
-            path:String,
-            gender:String,
-
-      }],
+      comments:[commentSchema],
       user_id: {
             type: String,
             require: true

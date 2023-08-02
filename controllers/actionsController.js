@@ -3,7 +3,7 @@ const notificationActions = require("../models/actionsModel");
 const allNotificationActions = (req, res) => {
       const {name, action, path, more, posterId, liked} = req.body
       notificationActions.create({name:name, action:action, path:path, more:more,  poster_id:posterId, user_id:liked}).then(result => {
-            console.log(result);
+            res.status(200).json(result);
       })
 };
 
